@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
@@ -17,12 +18,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/clientes")
+//@RequestMapping("/clientes") ele controla tudo o que vem depois do /clientes
 public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping("/clientes")
+    @GetMapping
     public List<Cliente> listar(){
      return clienteRepository.findAll();
       //return clienteRepository.findByNomeContaining("mo");
@@ -30,7 +33,7 @@ public class ClienteController {
 
     //OPTIONAL é um container que pode estar nulo ou conter algum dado
     //O optional extrai o que está dentro do cliente e se não tiver nada retorna nulo
-    @GetMapping("/clientes/{clienteId}")
+    @GetMapping("/{clienteId}")
     public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId){
        Optional<Cliente>  cliente = clienteRepository.findById(clienteId);
 

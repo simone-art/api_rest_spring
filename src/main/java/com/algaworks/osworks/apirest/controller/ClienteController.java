@@ -16,25 +16,11 @@ import java.util.List;
 @RestController
 public class ClienteController {
 
-    //Variável de instância que permite
-    //EntityManager é uma interfase do Jakarta Persistence que é usada pra fzer operações nas entidades
-    //Como consulta, criação, exclusão, etc.
-    //Pra o EntityManager estar disponível, ele deve ser instânciado e injetado no controller por medio
-    //Da anotação @PersistenceContext
-
-    //"From Cliente" é uma linguagem JPQL, parecida a SQL,
-    // onde você está dizendo que faça uma busca por todos os clientes
-    // E oa usar getResultList() você tipa a consulta, estabelecendo que
-    //Você quer uma lista de clientes
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Autowired
     private ClienteRepository clienteRepository;
 
     @GetMapping("/clientes")
     public List<Cliente> listar(){
-     return entityManager.createQuery("From Cliente", Cliente.class).getResultList();
+     return clienteRepository.findAll();
     }
 }

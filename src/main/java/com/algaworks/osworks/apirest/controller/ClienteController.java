@@ -3,6 +3,7 @@ package com.algaworks.osworks.apirest.controller;
 import com.algaworks.osworks.apirest.model.Cliente;
 import com.algaworks.osworks.apirest.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,7 @@ public class ClienteController {
     //Método pra adicionar cliente
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionarNovoCliente(@RequestBody Cliente cliente){
         return clienteRepository.save(cliente);
 

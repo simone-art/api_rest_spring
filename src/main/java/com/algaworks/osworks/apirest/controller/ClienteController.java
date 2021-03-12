@@ -1,6 +1,8 @@
 package com.algaworks.osworks.apirest.controller;
 
 import com.algaworks.osworks.apirest.model.Cliente;
+import com.algaworks.osworks.apirest.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,11 +22,19 @@ public class ClienteController {
     //Pra o EntityManager estar disponível, ele deve ser instânciado e injetado no controller por medio
     //Da anotação @PersistenceContext
 
+    //"From Cliente" é uma linguagem JPQL, parecida a SQL,
+    // onde você está dizendo que faça uma busca por todos os clientes
+    // E oa usar getResultList() você tipa a consulta, estabelecendo que
+    //Você quer uma lista de clientes
+
     @PersistenceContext
     private EntityManager entityManager;
 
-//    @GetMapping("/clientes")
-//    public List<Cliente> listar(){
-//
-//    }
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @GetMapping("/clientes")
+    public List<Cliente> listar(){
+     return entityManager.createQuery("From Cliente", Cliente.class).getResultList();
+    }
 }

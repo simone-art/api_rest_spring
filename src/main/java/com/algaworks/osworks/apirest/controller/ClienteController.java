@@ -4,10 +4,7 @@ import com.algaworks.osworks.apirest.model.Cliente;
 import com.algaworks.osworks.apirest.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,5 +38,13 @@ public class ClienteController {
            return ResponseEntity.ok(cliente.get());
        }
         return ResponseEntity.notFound().build();
+    }
+
+    //Método pra adicionar cliente
+
+    @PostMapping
+    public Cliente adicionarNovoCliente(@RequestBody Cliente cliente){
+        return clienteRepository.save(cliente);
+
     }
 }

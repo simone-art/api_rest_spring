@@ -22,6 +22,6 @@ public class ClienteController {
     @GetMapping("/clientes")
     public List<Cliente> listar(){
      //return clienteRepository.findAll();
-      return clienteRepository.findByNome("Simone Santos");
+      return clienteRepository.findByNomeContaining("mo");
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,15 +46,17 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente adicionarNovoCliente(@RequestBody Cliente cliente){
+    public Cliente adicionarNovoCliente(@Valid @RequestBody Cliente cliente){
         return clienteRepository.save(cliente);
 
     }
 
     //ResponseEntity.notFound().build(); retorna o código 404
     //cliente.setId(clienteId); funciona pra salvar o mesmo dado identiifcado pelo id
+    //@Valid, valida as anotações colodas no Cliente entity em cada um de seus atributos
+
     @PutMapping("/{clienteId}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long clienteId, @RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> atualizarCliente(@Valid @PathVariable Long clienteId, @RequestBody Cliente cliente){
      if (!clienteRepository.existsById(clienteId)){
          ResponseEntity.notFound().build();
      }

@@ -4,6 +4,8 @@ import com.algaworks.osworks.apirest.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 //JpaRepository é uma interfase do Spring data JPA
 //<Cliente, Long > vocé tipa essa interfase colocando primeiro o tipo da entidade(Cliente)
 // E o segundo é tipo do identificador, que neste caso é o ID, tipo Long
@@ -12,5 +14,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long > {
-
+     List<Cliente> findByNome(String nome);
 }

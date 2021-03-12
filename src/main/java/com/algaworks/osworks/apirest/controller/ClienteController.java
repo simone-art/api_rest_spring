@@ -49,4 +49,26 @@ public class ClienteController {
         return clienteRepository.save(cliente);
 
     }
+
+    //ResponseEntity.notFound().build(); retorna o código 404
+    //cliente.setId(clienteId); funciona pra salvar o mesmo dado identiifcado pelo id
+    @PutMapping("/{clienteId}")
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long clienteId, @RequestBody Cliente cliente){
+     if (!clienteRepository.existsById(clienteId)){
+         ResponseEntity.notFound().build();
+     }
+     cliente.setId(clienteId);
+     cliente = clienteRepository.save(cliente);
+     return ResponseEntity.ok(cliente);
+    }
+
+    //Se usa o Void porque não será retornado nenhum elemento
+    @DeleteMapping("/{clienteId}")
+    public ResponseEntity<Void> removerCliente(@PathVariable Long clienteId){
+        if (!clienteRepository.existsById(clienteId)){
+            ResponseEntity.notFound().build();
+        }
+        clienteRepository.deleteById(clienteId);
+        return ResponseEntity.noContent().build();
+    }
 }

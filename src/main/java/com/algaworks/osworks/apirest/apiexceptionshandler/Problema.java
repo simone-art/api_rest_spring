@@ -1,12 +1,38 @@
 package com.algaworks.osworks.apirest.apiexceptionshandler;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Problema {
 
     private Integer status;
     private LocalDateTime dataHora;
     private String titulo;
+    private List<Campo> campos;
+
+    public static class Campo{
+        private String nome;
+        private String mensagem;
+
+        /**
+         * Getters and setters da class Campo
+         */
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getMensagem() {
+            return mensagem;
+        }
+
+        public void setMensagem(String mensagem) {
+            this.mensagem = mensagem;
+        }
+    }
 
     /***
      *
@@ -35,5 +61,16 @@ public class Problema {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    /**
+     * Getters and setters da lista de campos
+     */
+    public List<Campo> getCampos() {
+        return campos;
+    }
+
+    public void setCampos(List<Campo> campos) {
+        this.campos = campos;
     }
 }

@@ -1,5 +1,8 @@
 package com.algaworks.osworks.apirest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,10 +22,15 @@ public class OrdemServico {
     private String descricao;
     private BigDecimal preco;
 
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private StatusOrdemDeServico status;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataAbertura;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataFinalizacao;
 
     /**

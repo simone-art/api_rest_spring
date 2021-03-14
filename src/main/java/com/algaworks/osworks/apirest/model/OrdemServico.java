@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -16,10 +18,13 @@ public class OrdemServico {
     private Long id;
 
     //@ManyToOne indica que muitas ordem só podem ser feitas por un único cliente pego pelo ID
+   @NotNull
     @ManyToOne
     private Cliente cliente;
 
+   @NotBlank
     private String descricao;
+   @NotNull
     private BigDecimal preco;
 
 

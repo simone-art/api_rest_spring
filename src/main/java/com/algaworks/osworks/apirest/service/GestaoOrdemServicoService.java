@@ -25,7 +25,7 @@ public class GestaoOrdemServicoService {
     public OrdemServico criar(OrdemServico ordemServico){
         Cliente cliente = clienteRepository.findById(ordemServico.getCliente().getId())
                 .orElseThrow(() -> new NegocioException("Cliente não encontrado"));
-        ordemServico.setCliente(cliente);
+        ordemServico.setCliente(cliente); //Carrega os dados do cliente
         ordemServico.setStatus(StatusOrdemDeServico.ABERTA);
         ordemServico.setDataAbertura(LocalDateTime.now());
       return ordemServicoRepository.save(ordemServico);

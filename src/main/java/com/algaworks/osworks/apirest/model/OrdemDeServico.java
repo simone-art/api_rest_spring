@@ -3,6 +3,7 @@ package com.algaworks.osworks.apirest.model;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class OrdemDeServico {
@@ -73,5 +74,21 @@ public class OrdemDeServico {
 
     public void setDataFinalizacao(LocalDateTime dataFinalizacao) {
         this.dataFinalizacao = dataFinalizacao;
+    }
+
+    /**
+     * Criação hasCode and equals só para o ID
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrdemDeServico that = (OrdemDeServico) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

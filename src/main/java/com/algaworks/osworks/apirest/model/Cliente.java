@@ -1,5 +1,7 @@
 package com.algaworks.osworks.apirest.model;
 
+import com.algaworks.osworks.apirest.ValidationGroup;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,7 +12,7 @@ import java.util.Objects;
 @Entity
 public class Cliente {
 
-    @NotNull
+    @NotNull(groups = ValidationGroup.ClienteId.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

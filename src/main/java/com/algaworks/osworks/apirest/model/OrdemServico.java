@@ -1,5 +1,6 @@
 package com.algaworks.osworks.apirest.model;
 
+import com.algaworks.osworks.apirest.ValidationGroup;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import net.bytebuddy.asm.Advice;
 
@@ -25,7 +26,7 @@ public class OrdemServico {
     //para certificar que não estejam nulos
     //@ManyToOne indica que muitas ordem só podem ser feitas por un único cliente pego pelo ID
     @Valid
-    //@ConvertGroup(from = Default.class, to = yyy)
+    @ConvertGroup(from = Default.class, to = ValidationGroup.ClienteId.class)
     @NotNull
     @ManyToOne
     private Cliente cliente;

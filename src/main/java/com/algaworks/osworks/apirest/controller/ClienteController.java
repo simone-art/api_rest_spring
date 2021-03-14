@@ -20,6 +20,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/clientes")
 //@RequestMapping("/clientes") ele controla tudo o que vem depois do /clientes
+//Consultas podem ser feitas diretamente no repositório
+
 public class ClienteController {
 
     @Autowired

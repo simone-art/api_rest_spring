@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 //Na pasta Service devem estar todas as regras de negócio
 //@Service permite que a classe se torne um componente
+// No Service é uma boa prática desenvolver método de alterações
+// de banco de dados e regras de negócio nesta classe
 
 @Service
 public class CadastroClienteService {

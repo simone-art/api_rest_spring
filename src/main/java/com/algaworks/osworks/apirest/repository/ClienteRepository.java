@@ -15,5 +15,6 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long > {
      List<Cliente> findByNome(String nome);
-     //List<Cliente> findByNomeContaining(String nome);
+     List<Cliente> findByNomeContaining(String nome);
+     Cliente findByEmail(String email); //Incluido código pra não deixar cadastrar na base de dados um email repetido
 }

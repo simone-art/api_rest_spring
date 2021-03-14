@@ -14,6 +14,9 @@ public class Problema {
         private String nome;
         private String mensagem;
 
+        public Campo(String nome, String mensagem) {
+        }
+
         /**
          * Getters and setters da class Campo
          */

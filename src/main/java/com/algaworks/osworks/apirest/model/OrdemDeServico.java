@@ -12,11 +12,13 @@ public class OrdemDeServico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToOne indica que muitas ordem só podem ser feitas por un único cliente
+    //@ManyToOne indica que muitas ordem só podem ser feitas por un único cliente pego pelo ID
     @ManyToOne
     private Cliente cliente;
     private String descricao;
     private BigDecimal preco;
+
+    @Enumerated(EnumType.STRING)
     private StatusOrdemDeServico status;
     private LocalDateTime dataAbertura;
     private LocalDateTime dataFinalizacao;

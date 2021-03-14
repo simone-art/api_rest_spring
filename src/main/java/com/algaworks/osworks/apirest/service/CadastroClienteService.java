@@ -1,5 +1,6 @@
 package com.algaworks.osworks.apirest.service;
 
+import com.algaworks.osworks.apirest.exception.NegocioException;
 import com.algaworks.osworks.apirest.model.Cliente;
 import com.algaworks.osworks.apirest.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class CadastroClienteService {
 
     //Método pra salvar o cliente
     public Cliente salvar(Cliente cliente){
+        Cliente clienteExistente = clienteRepository.findByEmail(cliente.getEmail());
+        if (clienteExistente != null && ! clienteExistente.equals(cliente)){
+            throw new NegocioException("Ja existe um cliente cadstrado com este email");
+        }
         return clienteRepository.save(cliente);
     }
 

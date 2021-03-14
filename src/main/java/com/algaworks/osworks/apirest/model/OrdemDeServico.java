@@ -1,6 +1,9 @@
 package com.algaworks.osworks.apirest.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -8,6 +11,8 @@ import java.util.Objects;
 @Entity
 public class OrdemDeServico {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Cliente cliente;
     private String descricao;

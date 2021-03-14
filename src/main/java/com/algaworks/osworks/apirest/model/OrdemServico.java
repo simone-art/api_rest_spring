@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -13,12 +16,17 @@ import java.util.Objects;
 @Entity
 public class OrdemServico {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //@Valid anotação que faz o efeito cascata e lê todos os atributos desta classe
+    //para certificar que não estejam nulos
     //@ManyToOne indica que muitas ordem só podem ser feitas por un único cliente pego pelo ID
-   @NotNull
+    @Valid
+    //@ConvertGroup(from = Default.class, to = yyy)
+    @NotNull
     @ManyToOne
     private Cliente cliente;
 

@@ -14,7 +14,10 @@ public class Problema {
         private String nome;
         private String mensagem;
 
+        //Constructor pra pegar o nome do campo e a mensagem
         public Campo(String nome, String mensagem) {
+            this.nome = nome;
+            this.mensagem = mensagem;
         }
 
         /**

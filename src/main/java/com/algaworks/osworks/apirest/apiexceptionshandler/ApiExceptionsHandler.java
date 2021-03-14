@@ -1,6 +1,7 @@
 package com.algaworks.osworks.apirest.apiexceptionshandler;
 
 
+import com.algaworks.osworks.apirest.exception.NegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -30,6 +31,17 @@ public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
     // no arquivo messages.properties
     @Autowired
     private MessageSource messageSource;
+
+    public ResponseEntity<Object> handleException(NegocioException ex, WebRequest request){
+        var status = HttpStatus.BAD_REQUEST;
+
+        var problema = new Problema();
+        problema.setStatus(status.value());
+        problema.setTitulo(ex.getMessage());
+        problema.setDataHora(LocalDateTime.now());
+
+        return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

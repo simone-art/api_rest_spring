@@ -1,8 +1,10 @@
 package com.algaworks.osworks.apirest.controller;
 
+import com.algaworks.osworks.apirest.dto.OrdemServicoModel;
 import com.algaworks.osworks.apirest.model.OrdemServico;
 import com.algaworks.osworks.apirest.repository.OrdemServicoRepository;
 import com.algaworks.osworks.apirest.service.GestaoOrdemServicoService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class OrdemServicoController {
     private GestaoOrdemServicoService gestaoOrdemServicoService;
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     private OrdemServicoRepository ordemServicoRepository;
 
     @PostMapping
@@ -35,10 +40,10 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/{ordemServicoId}")
-    public ResponseEntity<OrdemServico> buscarPeloId(@PathVariable Long ordemServicoId){
+    public ResponseEntity<OrdemServicoModel> buscarPeloId(@PathVariable Long ordemServicoId){
         Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
         if (ordemServico.isPresent()){
-            return ResponseEntity.ok(ordemServico.get());
+            //return ResponseEntity.ok(ordemServicoModel.get());
         }
         return ResponseEntity.notFound().build();
     }

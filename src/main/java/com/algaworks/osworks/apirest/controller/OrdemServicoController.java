@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ordens-servico")
@@ -55,6 +56,13 @@ public class OrdemServicoController {
 
     private OrdemServicoModel toModel(OrdemServico ordemServico){
         return modelMapper.map(ordemServico, OrdemServicoModel.class);
+    }
+
+    //Método que lista os atributos do OrdemServicoModel
+    private List<OrdemServicoModel> toCollectionModel(List<OrdemServico> OrdensServico){
+     return OrdensServico.stream()
+             .map(ordemServico -> toModel(ordemServico))
+             .collect(Collectors.toList());
     }
 
 

@@ -36,8 +36,8 @@ public class OrdemServicoController {
     }
 
     @GetMapping
-    public List<OrdemServico> listar(){
-        return ordemServicoRepository.findAll();
+    public List<OrdemServicoModel> listar(){
+        return toCollectionModel(ordemServicoRepository.findAll());
     }
 
     @GetMapping("/{ordemServicoId}")

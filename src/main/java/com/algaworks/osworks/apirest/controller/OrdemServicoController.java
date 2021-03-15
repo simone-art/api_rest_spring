@@ -43,9 +43,13 @@ public class OrdemServicoController {
     public ResponseEntity<OrdemServicoModel> buscarPeloId(@PathVariable Long ordemServicoId){
         Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
         if (ordemServico.isPresent()){
-            //return ResponseEntity.ok(ordemServicoModel.get());
+            OrdemServicoModel ordemServicoModel = modelMapper.map(ordemServico, OrdemServicoModel.class);
+            return ResponseEntity.ok(ordemServicoModel);
         }
         return ResponseEntity.notFound().build();
+
+        //ModelMapper instância o OrdemServicoModel
+        // e vai aitribuir as suas propiedades no OrdemServico
     }
 
 

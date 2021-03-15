@@ -29,8 +29,8 @@ public class OrdemServicoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrdemServico criar(@Valid @RequestBody OrdemServico ordemServico){
-        return gestaoOrdemServicoService.criar(ordemServico);
+    public OrdemServicoModel criar(@Valid @RequestBody OrdemServico ordemServico){
+        return toModel (gestaoOrdemServicoService.criar(ordemServico));
 
     }
 
